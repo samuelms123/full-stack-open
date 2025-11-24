@@ -1,45 +1,46 @@
-import Course from './components/Course.jsx';
+import Course from './components/Course';
+
 const App = () => {
   const courses = [
     {
       name: 'Half Stack application development',
-      courseId: 1,
+      id: 1,
       parts: [
         {
           name: 'Fundamentals of React',
           exercises: 10,
-          partId: 1,
+          id: 1,
         },
         {
           name: 'Using props to pass data',
           exercises: 7,
-          partId: 2,
+          id: 2,
         },
         {
           name: 'State of a component',
           exercises: 14,
-          partId: 3,
+          id: 3,
         },
         {
           name: 'Redux',
           exercises: 11,
-          partId: 4,
+          id: 4,
         },
       ],
     },
     {
       name: 'Node.js',
-      courseId: 2,
+      id: 2,
       parts: [
         {
           name: 'Routing',
           exercises: 3,
-          partId: 1,
+          id: 1,
         },
         {
           name: 'Middlewares',
           exercises: 7,
-          partId: 2,
+          id: 2,
         },
       ],
     },
@@ -47,8 +48,8 @@ const App = () => {
 
   return (
     <div>
-      {courses.map((course) => (
-        <Course key={course.courseId} course={course} />
+      {courses.map((c) => (
+        <Course key={c.id} course={c} />
       ))}
     </div>
   );
