@@ -10,6 +10,7 @@ const App = () => {
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
   const [filter, setFilter] = useState('');
+  const [countries, setCountries] = useState([]);
   const [notificationMessage, setNotificationMessage] = useState(null);
   const [notificationType, setNotificationType] = useState(null);
 
@@ -107,6 +108,12 @@ const App = () => {
           setNotificationType(null);
         }}
       />
+      <h2>Country search (basic)</h2>
+      <div>
+        <Filter filter={filter} setFilter={setFilter} />
+        <p>Current filter: {filter}</p>
+        <p>Countries loaded: {countries.length}</p>
+      </div>
       <Filter filter={filter} setFilter={setFilter} />
 
       <h2>Add new</h2>
