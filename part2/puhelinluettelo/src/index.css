@@ -1,0 +1,18 @@
+/* Alert styles */
+.alert-success {
+	background-color: #e6f7ea; /* light green background */
+	color: #145214; /* dark green text */
+	border: 1px solid #9be39a;
+	padding: 8px 12px;
+	border-radius: 4px;
+}
+
+/* Error alert */
+.alert-error {
+	background-color: #fdecea; /* light red/pink background */
+	color: #7a0b0b; /* dark red text */
+	border: 1px solid #f5a8a8;
+	padding: 8px 12px;
+	border-radius: 4px;
+}
+
