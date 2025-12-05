@@ -1,0 +1,10 @@
+DELETE http://localhost:3001/api/persons/1
+
+### Add a new person
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name": "Test User",
+    "number": "123-456-789"
+}
