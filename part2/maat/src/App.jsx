@@ -7,6 +7,7 @@ import CountryDetails from './components/CountryDetails';
 const App = () => {
   const [filter, setFilter] = useState('');
   const [countries, setCountries] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState(null);
 
   useEffect(() => {
     countryService.getAll().then((data) => {
@@ -18,10 +19,28 @@ const App = () => {
     return name.toLowerCase().includes(filter.trim().toLowerCase());
   });
 
+  // If a country has been selected via 'show', render only its details
+  if (selectedCountry) {
+    return (
+      <div>
+        <CountryDetails
+          country={selectedCountry}
+          onBack={() => setSelectedCountry(null)}
+        />
+      </div>
+    );
+  }
+
   return (
     <div>
       <h1>Country search (basic)</h1>
-      <Filter filter={filter} setFilter={setFilter} />
+      <Filter
+        filter={filter}
+        setFilter={(value) => {
+          setSelectedCountry(null);
+          setFilter(value);
+        }}
+      />
       <p>Current filter: {filter}</p>
       <p>Countries loaded: {countries.length}</p>
 
@@ -32,7 +51,10 @@ const App = () => {
       {filteredCountries.length > 1 && filteredCountries.length <= 10 && (
         <div>
           <h3>Matching countries</h3>
-          <CountryList countries={filteredCountries} />
+          <CountryList
+            countries={filteredCountries}
+            onShow={(c) => setSelectedCountry(c)}
+          />
         </div>
       )}
 
