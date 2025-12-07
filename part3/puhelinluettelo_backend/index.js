@@ -1,10 +1,17 @@
 const express = require('express');
+const morgan = require('morgan');
 
 const app = express();
 const PORT = 3001;
 
 // parse JSON bodies
 app.use(express.json());
+
+// custom morgan token for request body
+morgan.token('body', (req) => JSON.stringify(req.body));
+
+// request logging
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'));
 
 const persons = [
   {
