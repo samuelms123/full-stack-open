@@ -8,6 +8,8 @@ const PORT = process.env.PORT || 3001;
 // enable CORS
 app.use(cors());
 
+app.use(express.static('dist'))
+
 // parse JSON bodies
 app.use(express.json());
 
