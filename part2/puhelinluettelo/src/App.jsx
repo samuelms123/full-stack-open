@@ -57,13 +57,23 @@ const App = () => {
 
     const personObject = { name, number };
 
-    personService.create(personObject).then((returnedPerson) => {
-      setPersons((prev) => prev.concat(returnedPerson));
-      setNewName('');
-      setNewNumber('');
-      setNotificationMessage(`Added ${returnedPerson.name}`);
-      setNotificationType('success');
-    });
+    personService.create(personObject)
+      .then((returnedPerson) => {
+        setPersons((prev) => prev.concat(returnedPerson));
+        setNewName('');
+        setNewNumber('');
+        setNotificationMessage(`Added ${returnedPerson.name}`);
+        setNotificationType('success');
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 400) {
+          setNotificationMessage(error.response.data.error);
+          setNotificationType('error');
+        } else {
+          setNotificationMessage(`Failed to add person: ${error.message}`);
+          setNotificationType('error');
+        }
+      });
   };
 
   useEffect(() => {

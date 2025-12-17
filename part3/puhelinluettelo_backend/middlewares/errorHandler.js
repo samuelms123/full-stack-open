@@ -3,10 +3,10 @@ const errorHandler = (err, req, res, next) => {
 
   if (err.name === 'CastError') {
     return res.status(400).json({ error: 'malformed id' });
+  } else if (err.name === 'ValidationError') {
+    return res.status(400).json({ error: err.message });
   } else if (err.message === 'not found') {
     return res.status(404).json({ error: 'person not found' });
-  } else if (err.message.includes('ValidationError')) {
-    return res.status(400).json({ error: 'validation error' });
   }
 
   res.status(500).json({ error: 'internal server error' });
